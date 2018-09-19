@@ -33,3 +33,7 @@ def findPath(root, path, k):
 
     path.pop()
     return False
+
+def LCA(root, n1,n2):
+    return -1
+#just testing git

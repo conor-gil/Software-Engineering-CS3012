@@ -1,6 +1,7 @@
 import unittest
 from LCA import Node
-from LCA import findPathgit 
+from LCA import findPath
+from LCA import findLCA
 
 
 class testFindPath(unittest.TestCase):
@@ -52,6 +53,46 @@ class testFindPath(unittest.TestCase):
         path = []
         self.assertFalse(findPath(root, path, 8))
         self.assertListEqual(path, [])
+
+class testFindLCA(unittest.TestCase):
+
+    def testLCA(self):
+        root = Node(1)
+        root.left = Node(2)
+        root.right = Node(3)
+        root.left.left = Node(4)
+        root.left.right = Node(5)
+        root.right.left = Node(6)
+        root.right.right = Node(7)
+        self.assertEqual(findLCA(root,4,5), 2)
+        self.assertEqual(findLCA(root,4,6), 1)
+
+    def testLCAwroot(self):
+        root = Node(1)
+        root.left = Node(2)
+        root.right = Node(3)
+        root.left.left = Node(4)
+        root.left.right = Node(5)
+        root.right.left = Node(6)
+        root.right.right = Node(7)
+        self.assertEqual(findLCA(root, 1, 6), 1)
+        self.assertEqual(findLCA(root, 1, 5), 1)
+
+    def testLCAfalse(self):
+        root = Node(1)
+        root.left = Node(2)
+        root.right = Node(3)
+        root.left.left = Node(4)
+        root.left.right = Node(5)
+        root.right.left = Node(6)
+        root.right.right = Node(7)
+        self.assertEqual(findLCA(root,4,8), -1)
+        self.assertEqual(findLCA(root, 10, 8), -1)
+
+    def testLCAnull(self):
+        root = None
+        self.assertEqual(findLCA(root,4,8), -1)
+        self.assertEqual(findLCA(root, 10, 8), -1)
 
 
 

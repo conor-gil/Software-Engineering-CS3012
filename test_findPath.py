@@ -60,6 +60,8 @@ class testFindPath(unittest.TestCase):
         self.assertFalse(findPath(root, path, 8))
         self.assertListEqual(path, [])
 
+    #need to change find path tests to test directed acylcic graph
+
 class testFindLCA(unittest.TestCase):
 
     # test for LCA function in normal scenarios

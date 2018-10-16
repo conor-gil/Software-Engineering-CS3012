@@ -1,38 +1,35 @@
 
-#a binary tree node
-class Node:
-    def __init__(self, key):
-        self.key = key
-        self.left = None
-        self.right = None
+class Graph(object):
 
+    def __init__(self, graph_dict=None):
+        """ initializes a graph object
+            If no dictionary or None is given,
+            an empty dictionary will be used
+        """
+        if graph_dict == None:
+            graph_dict = {}
+        self.__graph_dict = graph_dict
 
-# Finds the path from root node to given root of the tree.
-# Stores the path in a list path[], returns true if path
-# exists otherwise false
-def findPath(root, path, k):
-    # Baes Case
-    if root is None:
-        return False
+    def find_path(self, start_vertex, end_vertex, path=None):
+        """ find a path from start_vertex to end_vertex
+            in graph """
+        if path == None:
+            path = []
+        graph = self.__graph_dict
+        path = path + [start_vertex]
+        if start_vertex == end_vertex:
+            return path
+        if start_vertex not in graph:
+            return []
+        for vertex in graph[start_vertex]:
+            if vertex not in path:
+                extended_path = self.find_path(vertex,
+                                               end_vertex,
+                                               path)
+                if extended_path:
+                    return extended_path
+        return []
 
-    # Store this node is path vector. The node will be
-    # removed if not in path from root to k
-    path.append(root.key)
-
-    # See if the k is same as root's key
-    if root.key == k:
-        return True
-
-    # Check if k is found in left or right sub-tree
-    if ((root.left != None and findPath(root.left, path, k)) or
-            (root.right != None and findPath(root.right, path, k))):
-        return True
-
-        # If not present in subtree rooted with root, remove
-    # root from path and return False
-
-    path.pop()
-    return False
 
 
 # Returns LCA if node n1 , n2 are present in the given

@@ -1,6 +1,5 @@
 import unittest
-from LCA import Node
-from LCA import findPath
+from LCA import Graph
 from LCA import findLCA
 
 
@@ -8,57 +7,57 @@ class testFindPath(unittest.TestCase):
 
     # test for findPath function in normal scenarios
     def testFindPath(self):
-        root = Node(1)
-        root.left = Node(2)
-        root.right = Node(3)
-        root.left.left = Node(4)
-        root.left.right = Node(5)
-        root.right.left = Node(6)
-        root.right.right = Node(7)
+        g = {"a": ["b","c"],
+             "b": ["c","d"],
+             "c": ["d"],
+             "d": ["c"],
+             "e": ["f"],
+             "f": ["c"]
+             }
+        graph = Graph(g)
+        path = graph.find_path("a","d")
+        print(path)
+        self.assertListEqual(graph.find_path("a", "d"), ["a", "b", "c", "d"])
 
-        path = []
-        self.assertTrue(findPath(root, path, 6))
-        self.assertListEqual(path, [1, 3, 6])
-
-        path = []
-        self.assertTrue(findPath(root, path, 4))
-        self.assertListEqual(path, [1, 2, 4])
 
     # test for findPath function from the root to itself
     def testFProot(self):
-        root = Node(1)
-        root.left = Node(2)
-        root.right = Node(3)
-        root.left.left = Node(4)
-        root.left.right = Node(5)
-        root.right.left = Node(6)
-        root.right.right = Node(7)
-
-        path = []
-        self.assertTrue(findPath(root, path, 1))
-        self.assertListEqual(path, [1])
+        g = {"a": ["b", "c"],
+             "b": ["c", "d"],
+             "c": ["d"],
+             "d": ["c"],
+             "e": ["f"],
+             "f": ["c"]
+             }
+        graph = Graph(g)
+        path = graph.find_path("a", "a")
+        print(path)
+        self.assertListEqual(graph.find_path("a", "a"), ["a"])
 
     # test for findPath function when the given node
     # doesn't exist
     def testFPfalse(self):
-        root = Node(1)
-        root.left = Node(2)
-        root.right = Node(3)
-        root.left.left = Node(4)
-        root.left.right = Node(5)
-        root.right.left = Node(6)
-        root.right.right = Node(7)
-        path = []
-        self.assertFalse(findPath(root, path, 8))
-        self.assertListEqual(path, [])
+        g = {"a": ["b", "c"],
+             "b": ["c", "d"],
+             "c": ["d"],
+             "d": ["c"],
+             "e": ["f"],
+             "f": ["c"]
+             }
+        graph = Graph(g)
+        path = graph.find_path("a", "g")
+        print(path)
+        self.assertListEqual(graph.find_path("a", "g"), [])
 
     # test for findPath function when no binary tree
     # is provided
     def testFPnull(self):
-        root = None
-        path = []
-        self.assertFalse(findPath(root, path, 8))
-        self.assertListEqual(path, [])
+        g = {
+             }
+        graph = Graph(g)
+        path = graph.find_path("a", "d")
+        print(path)
+        self.assertListEqual(graph.find_path("a", "d"), [])
 
     #need to change find path tests to test directed acylcic graph
 
@@ -66,60 +65,62 @@ class testFindLCA(unittest.TestCase):
 
     # test for LCA function in normal scenarios
     def testLCA(self):
-        root = Node(1)
-        root.left = Node(2)
-        root.right = Node(3)
-        root.left.left = Node(4)
-        root.left.right = Node(5)
-        root.right.left = Node(6)
-        root.right.right = Node(7)
-        self.assertEqual(findLCA(root,4,5), 2)
-        self.assertEqual(findLCA(root,4,6), 1)
+        g = {"a": ["b", "c"],
+             "b": ["c", "d"],
+             "c": ["d"],
+             "d": ["c"],
+             "e": ["f"],
+             "f": ["c"]
+             }
+        graph = Graph(g)
+        self.assertTrue(True)
+
 
     # test for LCA function when the root is given as
     # one of the inputs
     def testLCAwroot(self):
-        root = Node(1)
-        root.left = Node(2)
-        root.right = Node(3)
-        root.left.left = Node(4)
-        root.left.right = Node(5)
-        root.right.left = Node(6)
-        root.right.right = Node(7)
-        self.assertEqual(findLCA(root, 1, 6), 1)
-        self.assertEqual(findLCA(root, 1, 5), 1)
+        g = {"a": ["b", "c"],
+             "b": ["c", "d"],
+             "c": ["d"],
+             "d": ["c"],
+             "e": ["f"],
+             "f": ["c"]
+             }
+        graph = Graph(g)
+        self.assertTrue(True)
 
     # test for LCA function when the same node is given
     # as both inputs to the function
     def testLCAself(self):
-        root = Node(1)
-        root.left = Node(2)
-        root.right = Node(3)
-        root.left.left = Node(4)
-        root.left.right = Node(5)
-        root.right.left = Node(6)
-        root.right.right = Node(7)
-        self.assertEqual(findLCA(root, 7, 7), 7)
-        self.assertEqual(findLCA(root, 1, 1), 1)
+        g = {"a": ["b", "c"],
+             "b": ["c", "d"],
+             "c": ["d"],
+             "d": ["c"],
+             "e": ["f"],
+             "f": ["c"]
+             }
+        graph = Graph(g)
+        self.assertTrue(True)
 
     # test for LCA function when one or both of the nodes
     # does not exist
     def testLCAfalse(self):
-        root = Node(1)
-        root.left = Node(2)
-        root.right = Node(3)
-        root.left.left = Node(4)
-        root.left.right = Node(5)
-        root.right.left = Node(6)
-        root.right.right = Node(7)
-        self.assertEqual(findLCA(root,4,8), -1)
-        self.assertEqual(findLCA(root, 10, 8), -1)
+        g = {"a": ["b", "c"],
+             "b": ["c", "d"],
+             "c": ["d"],
+             "d": ["c"],
+             "e": ["f"],
+             "f": ["c"]
+             }
+        graph = Graph(g)
+        self.assertTrue(True)
 
     # test for LCA function when no binary tree is provided
     def testLCAnull(self):
-        root = None
-        self.assertEqual(findLCA(root,4,8), -1)
-        self.assertEqual(findLCA(root, 10, 8), -1)
+        g = {
+             }
+        graph = Graph(g)
+        self.assertTrue(True)
 
 
 

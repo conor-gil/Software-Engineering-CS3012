@@ -59,7 +59,75 @@ class testFindPath(unittest.TestCase):
         print(path)
         self.assertListEqual(graph.find_path("a", "d"), [])
 
-    #need to change find path tests to test directed acylcic graph
+
+class testFindAllPath(unittest.TestCase):
+
+    def testFindAll(self):
+        g = {"a": ["b", "c"],
+             "b": ["d", "e"],
+             "c": ["f"],
+             "d": ["g"],
+             "e": ["g"],
+             "f": ["e", "g"],
+             "g": []
+             }
+        graph = Graph(g)
+        paths = graph.findAllPaths("a","g")
+        print(path)
+        self.assertListEqual(graph.findAllPaths("a","g") , [['a', 'b', 'd', 'g'], ['a', 'b', 'e', 'g'], ['a', 'c', 'f', 'g']])
+
+    def testFAself(self):
+        g = {"a": ["b", "c"],
+             "b": ["d", "e"],
+             "c": ["f"],
+             "d": ["g"],
+             "e": ["g"],
+             "f": ["e", "g"],
+             "g": []
+             }
+        graph = Graph(g)
+        paths = graph.findAllPaths("c","c")
+        print(path)
+        self.assertListEqual(graph.findAllPaths("c","c") , [['c']])
+
+    def testFAone(self):
+        g = {"a": ["b", "c"],
+             "b": ["d", "e"],
+             "c": ["f"],
+             "d": ["g"],
+             "e": ["g"],
+             "f": ["e", "g"],
+             "g": []
+             }
+        graph = Graph(g)
+        paths = graph.findAllPaths("d","g")
+        print(path)
+        self.assertListEqual(graph.findAllPaths("d","g") , [['d', 'g']])
+        paths = graph.findAllPaths("f", "g")
+        print(path)
+        self.assertListEqual(graph.findAllPaths("f", "g"), [['f', 'g'], ['f', 'e', 'g']])
+
+    def testFAfalse(self):
+        g = {"a": ["b", "c"],
+             "b": ["d", "e"],
+             "c": ["f"],
+             "d": ["g"],
+             "e": ["g"],
+             "f": ["e", "g"],
+             "g": []
+             }
+        graph = Graph(g)
+        paths = graph.findAllPaths("a","z")
+        print(path)
+        self.assertListEqual(graph.findAllPaths("a","z") , [])
+
+    def testFAnull(self):
+        g = {}
+        graph = Graph(g)
+        paths = graph.findAllPaths("a","g")
+        print(path)
+        self.assertListEqual(graph.findAllPaths("a","g") , [])
+
 
 class testFindLCA(unittest.TestCase):
 

@@ -16,7 +16,7 @@ class testFindPath(unittest.TestCase):
              }
         graph = Graph(g)
         path = graph.find_path("a","d")
-        print(path)
+        #print(path)
         self.assertListEqual(graph.find_path("a", "d"), ["a", "b", "c", "d"])
 
 
@@ -31,7 +31,7 @@ class testFindPath(unittest.TestCase):
              }
         graph = Graph(g)
         path = graph.find_path("a", "a")
-        print(path)
+        #print(path)
         self.assertListEqual(graph.find_path("a", "a"), ["a"])
 
     # test for findPath function when the given node
@@ -46,7 +46,7 @@ class testFindPath(unittest.TestCase):
              }
         graph = Graph(g)
         path = graph.find_path("a", "g")
-        print(path)
+        #print(path)
         self.assertListEqual(graph.find_path("a", "g"), [])
 
     # test for findPath function when no binary tree
@@ -56,7 +56,7 @@ class testFindPath(unittest.TestCase):
              }
         graph = Graph(g)
         path = graph.find_path("a", "d")
-        print(path)
+        #print(path)
         self.assertListEqual(graph.find_path("a", "d"), [])
 
 
@@ -73,7 +73,7 @@ class testFindAllPath(unittest.TestCase):
              }
         graph = Graph(g)
         paths = graph.findAllPaths("a","g")
-        print(path)
+        print(paths)
         self.assertListEqual(graph.findAllPaths("a","g") , [['a', 'b', 'd', 'g'], ['a', 'b', 'e', 'g'], ['a', 'c', 'f', 'g']])
 
     def testFAself(self):
@@ -87,7 +87,7 @@ class testFindAllPath(unittest.TestCase):
              }
         graph = Graph(g)
         paths = graph.findAllPaths("c","c")
-        print(path)
+        print(paths)
         self.assertListEqual(graph.findAllPaths("c","c") , [['c']])
 
     def testFAone(self):
@@ -101,10 +101,10 @@ class testFindAllPath(unittest.TestCase):
              }
         graph = Graph(g)
         paths = graph.findAllPaths("d","g")
-        print(path)
+        print(paths)
         self.assertListEqual(graph.findAllPaths("d","g") , [['d', 'g']])
         paths = graph.findAllPaths("f", "g")
-        print(path)
+        print(paths)
         self.assertListEqual(graph.findAllPaths("f", "g"), [['f', 'g'], ['f', 'e', 'g']])
 
     def testFAfalse(self):
@@ -118,14 +118,14 @@ class testFindAllPath(unittest.TestCase):
              }
         graph = Graph(g)
         paths = graph.findAllPaths("a","z")
-        print(path)
+        print(paths)
         self.assertListEqual(graph.findAllPaths("a","z") , [])
 
     def testFAnull(self):
         g = {}
         graph = Graph(g)
         paths = graph.findAllPaths("a","g")
-        print(path)
+        print(paths)
         self.assertListEqual(graph.findAllPaths("a","g") , [])
 
 

@@ -1,4 +1,5 @@
 import unittest
+import collections
 from LCA import Graph
 from LCA import findLCA
 
@@ -74,7 +75,7 @@ class testFindAllPath(unittest.TestCase):
         graph = Graph(g)
         paths = graph.findAllPaths("a","g")
         print(paths)
-        self.assertListEqual(graph.findAllPaths("a","g") , [['a', 'b', 'd', 'g'], ['a', 'b', 'e', 'g'], ['a', 'c', 'f', 'g']])
+        self.assertListEqual(sorted(graph.findAllPaths("a","g")) , sorted([['a', 'b', 'd', 'g'], ['a', 'b', 'e', 'g'], ['a', 'c', 'f', 'g'], ['a', 'c', 'f', 'e', 'g']]))
 
     def testFAself(self):
         g = {"a": ["b", "c"],
@@ -88,7 +89,7 @@ class testFindAllPath(unittest.TestCase):
         graph = Graph(g)
         paths = graph.findAllPaths("c","c")
         print(paths)
-        self.assertListEqual(graph.findAllPaths("c","c") , [['c']])
+        self.assertListEqual(sorted(graph.findAllPaths("c","c")) , sorted([['c']]))
 
     def testFAone(self):
         g = {"a": ["b", "c"],
@@ -102,10 +103,10 @@ class testFindAllPath(unittest.TestCase):
         graph = Graph(g)
         paths = graph.findAllPaths("d","g")
         print(paths)
-        self.assertListEqual(graph.findAllPaths("d","g") , [['d', 'g']])
+        self.assertListEqual(sorted(graph.findAllPaths("d","g")) , sorted([['d', 'g']]))
         paths = graph.findAllPaths("f", "g")
         print(paths)
-        self.assertListEqual(graph.findAllPaths("f", "g"), [['f', 'g'], ['f', 'e', 'g']])
+        self.assertListEqual(sorted(graph.findAllPaths("f", "g")), sorted([['f', 'g'], ['f', 'e', 'g']]))
 
     def testFAfalse(self):
         g = {"a": ["b", "c"],

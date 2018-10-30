@@ -1,7 +1,6 @@
 import unittest
 import collections
 from LCA import Graph
-from LCA import findLCA
 
 
 class testFindPath(unittest.TestCase):
@@ -129,6 +128,64 @@ class testFindAllPath(unittest.TestCase):
         print(paths)
         self.assertListEqual(graph.findAllPaths("a","g") , [])
 
+class testFindDepth(unittest.TestCase):
+
+    # test for findDepth function in normal scenarios
+    def testDepth(self):
+        g = {"a": ["b", "c"],
+             "b": ["d", "e"],
+             "c": ["f"],
+             "d": ["g"],
+             "e": ["g"],
+             "f": ["e", "g"],
+             "g": []
+             }
+        graph = Graph(g)
+        self.assertEqual(graph.findDepth("a", "d"), 2)
+        self.assertEqual(graph.findDepth("a", "b"), 1)
+
+    # test for findDepth function with more than one path
+    def testDepthMul(self):
+        g = {"a": ["b", "c"],
+             "b": ["d", "e"],
+             "c": ["f"],
+             "d": ["g"],
+             "e": ["g"],
+             "f": ["e", "g"],
+             "g": []
+             }
+        graph = Graph(g)
+        self.assertEqual(graph.findDepth("a", "e"), 3)
+        self.assertEqual(graph.findDepth("a", "g"), 4)
+
+    # test for findDepth function in normal scenarios
+    def testDepthSelf(self):
+        g = {"a": ["b", "c"],
+             "b": ["d", "e"],
+             "c": ["f"],
+             "d": ["g"],
+             "e": ["g"],
+             "f": ["e", "g"],
+             "g": []
+             }
+        graph = Graph(g)
+        self.assertEqual(graph.findDepth("a", "a"), 0)
+
+    # test for findDepth function in normal scenarios
+    def testDepthError(self):
+        g = {"a": ["b", "c"],
+             "b": ["d", "e"],
+             "c": ["f"],
+             "d": ["g"],
+             "e": ["g"],
+             "f": ["e", "g"],
+             "g": []
+             }
+        graph = Graph(g)
+        self.assertEqual(graph.findDepth("a", "h"), -1)
+
+
+
 
 class testFindLCA(unittest.TestCase):
 
@@ -194,7 +251,7 @@ class testFindLCA(unittest.TestCase):
         g = {
              }
         graph = Graph(g)
-        self.assertEqual(graph.findLCA("a", "d", "i"), -1)
+        self.assertEqual(graph.findLCA("a", "d", "b"), -1)
 
 
 

@@ -49,9 +49,21 @@ class Graph(object):
                     paths.append(p)
         return paths
 
+    # finds the depth of the longest path between node and root
+    def findDepth(self, root, node):
+        paths = self.findAllPaths(root, node)
+        if (paths == []):
+            return -1
+        maxDepth = 0
+        for path in paths:
+            if (len(path) -1 > maxDepth):
+                maxDepth = len(path) - 1
+        return maxDepth
+
+
     # Returns LCA if node n1 , n2 are present in the given
     # binary tre otherwise return -1
-    def findLCA(root, n1, n2):
+    def findLCA(self, root, n1, n2):
         # To store paths to n1 and n2 fromthe root
         path1 = []
         path2 = []

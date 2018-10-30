@@ -135,61 +135,66 @@ class testFindLCA(unittest.TestCase):
     # test for LCA function in normal scenarios
     def testLCA(self):
         g = {"a": ["b", "c"],
-             "b": ["c", "d"],
-             "c": ["d"],
-             "d": ["c"],
-             "e": ["f"],
-             "f": ["c"]
+             "b": ["d", "e"],
+             "c": ["f"],
+             "d": ["g"],
+             "e": ["g"],
+             "f": ["e", "g"],
+             "g": []
              }
         graph = Graph(g)
-        self.assertTrue(True)
+        self.assertEqual(graph.findLCA("a", "d", "e"), "b")
+        self.assertEqual(graph.findLCA("a", "d", "f"), "a")
 
 
     # test for LCA function when the root is given as
     # one of the inputs
     def testLCAwroot(self):
         g = {"a": ["b", "c"],
-             "b": ["c", "d"],
-             "c": ["d"],
-             "d": ["c"],
-             "e": ["f"],
-             "f": ["c"]
+             "b": ["d", "e"],
+             "c": ["f"],
+             "d": ["g"],
+             "e": ["g"],
+             "f": ["e", "g"],
+             "g": []
              }
         graph = Graph(g)
-        self.assertTrue(True)
+        self.assertEqual(graph.findLCA("a", "a", "e"), "a")
 
     # test for LCA function when the same node is given
     # as both inputs to the function
     def testLCAself(self):
         g = {"a": ["b", "c"],
-             "b": ["c", "d"],
-             "c": ["d"],
-             "d": ["c"],
-             "e": ["f"],
-             "f": ["c"]
+             "b": ["d", "e"],
+             "c": ["f"],
+             "d": ["g"],
+             "e": ["g"],
+             "f": ["e", "g"],
+             "g": []
              }
         graph = Graph(g)
-        self.assertTrue(True)
+        self.assertEqual(graph.findLCA("a", "d", "d"), "d")
 
     # test for LCA function when one or both of the nodes
     # does not exist
     def testLCAfalse(self):
         g = {"a": ["b", "c"],
-             "b": ["c", "d"],
-             "c": ["d"],
-             "d": ["c"],
-             "e": ["f"],
-             "f": ["c"]
+             "b": ["d", "e"],
+             "c": ["f"],
+             "d": ["g"],
+             "e": ["g"],
+             "f": ["e", "g"],
+             "g": []
              }
         graph = Graph(g)
-        self.assertTrue(True)
+        self.assertEqual(graph.findLCA("a", "d", "i"), -1)
 
     # test for LCA function when no binary tree is provided
     def testLCAnull(self):
         g = {
              }
         graph = Graph(g)
-        self.assertTrue(True)
+        self.assertEqual(graph.findLCA("a", "d", "i"), -1)
 
 
 
